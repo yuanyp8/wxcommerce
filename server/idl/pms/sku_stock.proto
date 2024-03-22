@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/sku_stock";
+
+/*产品库存*/
+
+
+message BaseSkuStock{
+  int64    Id = 1;
+  int64    ProductId = 2;
+  string    SkuCode = 3; // sku编码
+  float  Price = 4;
+  int64    Stock = 5; // 库存
+  int64    LowStock = 6; // 预警库存
+  string    Pic = 7; // 展示图片
+  int64    Sale = 8; // 销量
+  float  PromotionPrice = 9; // 单品促销价格
+  int64    LockStock = 10; // 锁定库存
+  string    SpData = 11; // 商品销售属性，json格式 e.g. {"key":"风格","value":"秋季"}
+
+}
+
+message SkuStockAddReq {
+    BaseSkuStock SkuStock = 1;
+}
+
+message SkuStockAddResp {
+  string pong = 1;
+}
+
+message SkuStockListReq {
+  int64    ProductId = 1;
+}
+
+message SkuStockListResp {
+  int64 total = 1;
+  repeated  BaseSkuStock list = 2;
+}
+
+message SkuStockUpdateReq {
+    BaseSkuStock SkuStock = 1;
+}
+
+message SkuStockUpdateResp {
+  string pong = 1;
+}
+
+message SkuStockDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message SkuStockDeleteResp {
+  string pong = 1;
+}
+
+message ReleaseSkuStockLockReq {
+  repeated ReleaseSkuStockLockData data = 1;
+}
+
+message ReleaseSkuStockLockData {
+  int64    ProductSkuId = 1;
+  int64    ProductQuantity = 2;
+}
+
+message ReleaseSkuStockLockResp {
+  string pong = 1;
+}
+
+message LockSkuStockLockReq {
+  repeated LockSkuStockLockData data = 1;
+}
+
+message LockSkuStockLockData {
+  int64    ProductSkuId = 1;
+  int64    ProductQuantity = 2;
+}
+
+message LockSkuStockLockResp {
+  string pong = 1;
+}
+
+message QuerySkuStockByProductSkuIdReq {
+  int64    ProductSkuId = 1;
+}
+
+
+service SkuStockService {
+  rpc SkuStockAdd(SkuStockAddReq) returns(SkuStockAddResp);
+  rpc SkuStockList(SkuStockListReq) returns(SkuStockListResp);
+  rpc SkuStockUpdate(SkuStockUpdateReq) returns(SkuStockUpdateResp);
+  rpc SkuStockDelete(SkuStockDeleteReq) returns(SkuStockDeleteResp);
+  //取消订单的时候,释放库存
+  rpc ReleaseSkuStockLock(ReleaseSkuStockLockReq) returns(ReleaseSkuStockLockResp);
+  //下单的时候,锁定库存
+  rpc LockSkuStockLock(LockSkuStockLockReq) returns(LockSkuStockLockResp);
+  //根据ProductSkuId查询sku
+  rpc QuerySkuStockByProductSkuId(QuerySkuStockByProductSkuIdReq) returns(BaseSkuStock);
+
+}

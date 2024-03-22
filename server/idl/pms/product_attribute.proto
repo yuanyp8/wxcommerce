@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_attribute";
+
+/*
+产品属性参数
+(id, product_attribute_category_id, name, select_type, input_type, input_list,           sort, filter_type, search_type, related_status, hand_add_status, type)
+(1,                            1,   '尺寸',      2,          1,     'M,X,XL,2XL,3XL,4XL', 0,         0,         0,            0,                 0,         0)
+*/
+
+
+
+message BaseProductAttribute {
+  int64    Id = 1;
+  int64    ProductAttributeCategoryId = 2;
+  string  Name = 3;
+  int64    SelectType = 4; // 属性选择类型：0->唯一；1->单选；2->多选
+  int64    InputType = 5; // 属性录入方式：0->手工录入；1->从列表中选取
+  string  InputList = 6; // 可选值列表，以逗号隔开
+  int64    Sort = 7; // 排序字段：最高的可以单独上传图片
+  int64    FilterType = 8; // 分类筛选样式：1->普通；1->颜色
+  int64    SearchType = 9; // 检索类型；0->不需要进行检索；1->关键字检索；2->范围检索
+  int64    RelatedStatus = 10; // 相同属性产品是否关联；0->不关联；1->关联
+  int64    HandAddStatus = 11; // 是否支持手动新增；0->不支持；1->支持
+  int64    Type = 12; // 属性的类型；0->规格；1->参数
+}
+
+message ProductAttributeAddReq {
+  BaseProductAttribute ProductAttribute = 1;
+}
+
+message ProductAttributeAddResp {
+  string pong = 1;
+}
+
+message ProductAttributeListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+  int64   Type = 4;
+  int64    ProductAttributeCategoryId = 5;
+}
+
+message ProductAttributeListResp {
+  int64 total = 1;
+  repeated  BaseProductAttribute list = 2;
+}
+
+message ProductAttributeUpdateReq {
+    BaseProductAttribute ProductAttribute = 1;
+}
+
+message ProductAttributeUpdateResp {
+  string pong = 1;
+}
+
+message ProductAttributeDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductAttributeDeleteResp {
+  string pong = 1;
+}
+
+service ProductAttributeService {
+  rpc ProductAttributeAdd(ProductAttributeAddReq) returns(ProductAttributeAddResp);
+  rpc ProductAttributeList(ProductAttributeListReq) returns(ProductAttributeListResp);
+  rpc ProductAttributeUpdate(ProductAttributeUpdateReq) returns(ProductAttributeUpdateResp);
+  rpc ProductAttributeDelete(ProductAttributeDeleteReq) returns(ProductAttributeDeleteResp);
+}

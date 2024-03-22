@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/comment";
+
+message BaseComment {
+  // TODO: 去掉自增id
+  int64      Id = 1;
+  int64      ProductId = 2;
+  string      MemberNickName = 3; // 用户昵称
+  string      ProductName = 4; // 商品名称
+  int64      Star = 5; // 评价星数：0->5
+  string      MemberIp = 6; // 用户ip
+  string  CreateTime = 7; // 评价时间
+  int64      ShowStatus = 8; // 是否显示：0->不显示；1->显示
+  string      ProductAttribute = 9; // 购买时的商品属性
+  int64      CollectCount = 10; // 收藏数
+  int64      ReadCount = 11; // 阅读数
+  string      Content = 12; // 评价内容
+  string      Pics = 13; // 评论图片/视频/音频的链接
+  string      MemberIcon = 14; // 用户头像
+  int64      ReplayCount = 15; // 回复数
+}
+
+
+message CommentAddReq {
+  BaseComment Comment = 1;
+}
+
+message CommentAddResp {
+  string pong = 1;
+}
+
+message CommentListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message CommentListResp {
+  int64 total = 1;
+  repeated  BaseComment list = 2;
+}
+
+message CommentUpdateReq {
+  BaseComment Comment = 1;
+}
+
+message CommentUpdateResp {
+  string pong = 1;
+}
+
+message CommentDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message CommentDeleteResp {
+  string pong = 1;
+}
+
+service CommentService {
+  rpc CommentAdd(CommentAddReq) returns(CommentAddResp);
+  rpc CommentList(CommentListReq) returns(CommentListResp);
+  rpc CommentUpdate(CommentUpdateReq) returns(CommentUpdateResp);
+  rpc CommentDelete(CommentDeleteReq) returns(CommentDeleteResp);
+}

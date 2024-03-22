@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/member_price";
+
+
+message BaseMemberPrice {
+  int64    Id = 1;
+  int64    ProductId = 2; // 商品id
+  int64    MemberLevelId = 3; // 会员等级id
+  int64  MemberPrice = 4; // 会员价格
+  string    MemberLevelName = 5; // 会员等级名称
+}
+
+
+message MemberPriceAddReq {
+  BaseMemberPrice MemberPrice = 1;
+}
+
+message MemberPriceAddResp {
+  string pong = 1;
+}
+
+message MemberPriceListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message MemberPriceListResp {
+  int64 total = 1;
+  repeated  BaseMemberPrice list = 2;
+}
+
+message MemberPriceUpdateReq {
+  BaseMemberPrice MemberPrice = 1;
+}
+
+message MemberPriceUpdateResp {
+  string pong = 1;
+}
+
+message MemberPriceDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message MemberPriceDeleteResp {
+  string pong = 1;
+}
+
+service MemberPriceService {
+  rpc MemberPriceAdd(MemberPriceAddReq) returns(MemberPriceAddResp);
+  rpc MemberPriceList(MemberPriceListReq) returns(MemberPriceListResp);
+  rpc MemberPriceUpdate(MemberPriceUpdateReq) returns(MemberPriceUpdateResp);
+  rpc MemberPriceDelete(MemberPriceDeleteReq) returns(MemberPriceDeleteResp);
+}

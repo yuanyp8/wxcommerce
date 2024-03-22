@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_full_reduction";
+
+/*
+产品满减表(只针对同商品)
+*/
+
+message BaseProductOperateLog{
+  int64      Id = 1;
+  int64      ProductId = 2;
+  int64    PriceOld = 3;
+  int64    PriceNew = 4;
+  int64    SalePriceOld = 5;
+  int64    SalePriceNew = 6;
+  int64      GiftPointOld = 7;
+  int64      GiftPointNew = 8;
+  int64      UsePointLimitOld = 9;
+  int64      UsePointLimitNew = 10;
+  string      OperateMan = 11;
+  string  CreateTime = 12;
+}
+
+message ProductOperateLogAddReq {
+  BaseProductOperateLog ProductOperateLog = 1;
+}
+
+message ProductOperateLogAddResp {
+  string pong = 1;
+}
+
+message ProductOperateLogListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message ProductOperateLogListResp {
+  int64 total = 1;
+  repeated  BaseProductOperateLog list = 2;
+}
+
+message ProductOperateLogUpdateReq {
+  BaseProductOperateLog ProductOperateLog = 1;
+
+}
+
+message ProductOperateLogUpdateResp {
+  string pong = 1;
+}
+
+message ProductOperateLogDeleteReq {
+  int64 id = 1;
+}
+
+message ProductOperateLogDeleteResp {
+  string pong = 1;
+}
+
+service ProductOperateLogService {
+  rpc ProductOperateLogAdd(ProductOperateLogAddReq) returns(ProductOperateLogAddResp);
+  rpc ProductOperateLogList(ProductOperateLogListReq) returns(ProductOperateLogListResp);
+  rpc ProductOperateLogUpdate(ProductOperateLogUpdateReq) returns(ProductOperateLogUpdateResp);
+  rpc ProductOperateLogDelete(ProductOperateLogDeleteReq) returns(ProductOperateLogDeleteResp);
+}

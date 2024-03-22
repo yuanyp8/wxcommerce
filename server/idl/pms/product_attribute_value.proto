@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_attribute_value";
+
+message BaseProductAttributeValue {
+  int64    Id = 1;
+  int64    ProductId = 2;
+  int64    ProductAttributeId = 3;
+  string  Value = 4; // 手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
+}
+
+message ProductAttributeValueAddReq {
+  BaseProductAttributeValue ProductAttributeValue = 1;
+}
+
+message ProductAttributeValueAddResp {
+  string pong = 1;
+}
+
+message ProductAttributeValueListReq {
+  int64    ProductId = 1;
+}
+
+
+message ProductAttributeValueListResp {
+  int64 total = 1;
+  repeated  BaseProductAttributeValue list = 2;
+}
+
+message ProductAttributeValueUpdateReq {
+  BaseProductAttributeValue ProductAttributeValue = 1;
+}
+
+message ProductAttributeValueUpdateResp {
+  string pong = 1;
+}
+
+message ProductAttributeValueDeleteReq {
+  int64 id = 1;
+}
+
+message ProductAttributeValueDeleteResp {
+  string pong = 1;
+}
+
+service ProductAttributeValueService {
+  rpc ProductAttributeValueAdd(ProductAttributeValueAddReq) returns(ProductAttributeValueAddResp);
+  rpc ProductAttributeValueList(ProductAttributeValueListReq) returns(ProductAttributeValueListResp);
+  rpc ProductAttributeValueUpdate(ProductAttributeValueUpdateReq) returns(ProductAttributeValueUpdateResp);
+  rpc ProductAttributeValueDelete(ProductAttributeValueDeleteReq) returns(ProductAttributeValueDeleteResp);
+}

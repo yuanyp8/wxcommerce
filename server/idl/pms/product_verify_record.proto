@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_verify_record";
+
+/*
+商品审核记录
+*/
+
+message BaseProductVerifyRecord{
+  int64      Id = 1;
+  int64      ProductId = 2;
+  string  CreateTime = 3;
+  string    VerifyMan = 4; // 审核人
+  int64      Status = 5;
+  string    Detail = 6; // 反馈详情
+
+}
+
+
+message ProductVerifyRecordAddReq {
+    BaseProductVerifyRecord ProductVerifyRecord = 1;
+}
+
+message ProductVerifyRecordAddResp {
+  string pong = 1;
+}
+
+message ProductVerifyRecordListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+
+
+message ProductVerifyRecordListResp {
+  int64 total = 1;
+  repeated  BaseProductVerifyRecord list = 2;
+}
+
+message ProductVerifyRecordUpdateReq {
+    BaseProductVerifyRecord ProductVerifyRecord = 1;
+}
+
+message ProductVerifyRecordUpdateResp {
+  string pong = 1;
+}
+
+message ProductVerifyRecordDeleteReq {
+  int64 id = 1;
+}
+
+message ProductVerifyRecordDeleteResp {
+  string pong = 1;
+}
+
+service ProductVerifyRecordService {
+  rpc ProductVerifyRecordAdd(ProductVerifyRecordAddReq) returns(ProductVerifyRecordAddResp);
+  rpc ProductVerifyRecordList(ProductVerifyRecordListReq) returns(ProductVerifyRecordListResp);
+  rpc ProductVerifyRecordUpdate(ProductVerifyRecordUpdateReq) returns(ProductVerifyRecordUpdateResp);
+  rpc ProductVerifyRecordDelete(ProductVerifyRecordDeleteReq) returns(ProductVerifyRecordDeleteResp);
+}

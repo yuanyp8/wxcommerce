@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_attribute_category";
+
+/*产品属性分类*/
+
+message BaseProductAttributeCategory{
+  int64    Id = 1;
+  string  Name = 2;
+  int64    AttributeCount = 3; // 属性数量
+  int64    ParamCount = 4; // 参数数量
+}
+
+message ProductAttributeCategoryAddReq {
+  string  Name = 1;
+}
+
+message ProductAttributeCategoryAddResp {
+  string pong = 1;
+}
+
+message ProductAttributeCategoryListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+}
+
+
+
+message ProductAttributeCategoryListResp {
+  int64 total = 1;
+  repeated  BaseProductAttributeCategory list = 2;
+}
+
+message ProductAttributeCategoryUpdateReq {
+  BaseProductAttributeCategory ProductAttributeCategory = 1;
+}
+
+message ProductAttributeCategoryUpdateResp {
+  string pong = 1;
+}
+
+message ProductAttributeCategoryDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductAttributeCategoryDeleteResp {
+  string pong = 1;
+}
+
+service ProductAttributeCategoryService {
+  rpc ProductAttributeCategoryAdd(ProductAttributeCategoryAddReq) returns(ProductAttributeCategoryAddResp);
+  rpc ProductAttributeCategoryList(ProductAttributeCategoryListReq) returns(ProductAttributeCategoryListResp);
+  rpc ProductAttributeCategoryUpdate(ProductAttributeCategoryUpdateReq) returns(ProductAttributeCategoryUpdateResp);
+  rpc ProductAttributeCategoryDelete(ProductAttributeCategoryDeleteReq) returns(ProductAttributeCategoryDeleteResp);
+}

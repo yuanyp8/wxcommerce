@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_full_reduction";
+
+/*
+产品满减表(只针对同商品)
+*/
+
+
+message BaseProductFullReduction {
+  int64    Id = 1;
+  int64    ProductId = 2;
+  float  FullPrice = 3;
+  float  ReducePrice = 4;
+}
+
+message ProductFullReductionAddReq {
+    BaseProductFullReduction ProductFullReduction = 1;
+}
+
+message ProductFullReductionAddResp {
+  string pong = 1;
+}
+
+message ProductFullReductionListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  int64 ProductId = 3;
+}
+
+message ProductFullReductionListResp {
+  int64 total = 1;
+  repeated  BaseProductFullReduction list = 2;
+}
+
+message ProductFullReductionUpdateReq {
+  BaseProductFullReduction ProductFullReduction = 1;
+}
+
+message ProductFullReductionUpdateResp {
+  string pong = 1;
+}
+
+message ProductFullReductionDeleteReq {
+  int64 id = 1;
+}
+
+message ProductFullReductionDeleteResp {
+  string pong = 1;
+}
+
+service ProductFullReductionService {
+  rpc ProductFullReductionAdd(ProductFullReductionAddReq) returns(ProductFullReductionAddResp);
+  rpc ProductFullReductionList(ProductFullReductionListReq) returns(ProductFullReductionListResp);
+  rpc ProductFullReductionUpdate(ProductFullReductionUpdateReq) returns(ProductFullReductionUpdateResp);
+  rpc ProductFullReductionDelete(ProductFullReductionDeleteReq) returns(ProductFullReductionDeleteResp);
+}

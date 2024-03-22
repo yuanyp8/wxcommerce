@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/comment_reply";
+
+message BaseFreightTemplate {
+  string    Name = 2; // 运费模版名称
+  int64    ChargeType = 3; // 计费类型:0->按重量；1->按件数
+  int64  FirstWeight = 4; // 首重kg
+  int64  FirstFee = 5; // 首费（元）
+  int64  ContinueWeight = 61; // 续重
+  int64  ContinueFee = 7; // 续重费用
+  string    Dest = 8; // 目的地（省、市）
+}
+
+
+message FreightTemplateAddReq {
+    BaseFreightTemplate FreightTemplate = 1;
+}
+
+message FreightTemplateAddResp {
+  string pong = 1;
+}
+
+message FreightTemplateListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message FreightTemplateListResp {
+  int64 total = 1;
+  repeated  BaseFreightTemplate list = 2;
+}
+
+message FreightTemplateUpdateReq {
+  BaseFreightTemplate FreightTemplate = 1;
+}
+
+message FreightTemplateUpdateResp {
+  string pong = 1;
+}
+
+message FreightTemplateDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message FreightTemplateDeleteResp {
+  string pong = 1;
+}
+
+service FreightTemplateService {
+  rpc FreightTemplateAdd(FreightTemplateAddReq) returns(FreightTemplateAddResp);
+  rpc FreightTemplateList(FreightTemplateListReq) returns(FreightTemplateListResp);
+  rpc FreightTemplateUpdate(FreightTemplateUpdateReq) returns(FreightTemplateUpdateResp);
+  rpc FreightTemplateDelete(FreightTemplateDeleteReq) returns(FreightTemplateDeleteResp);
+}

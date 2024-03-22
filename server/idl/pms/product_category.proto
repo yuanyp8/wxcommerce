@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_category";
+
+
+message BaseProductCategory {
+  int64    Id = 1;
+  int64    ParentId = 2; // 上级分类的编号：0表示一级分类
+  string  Name = 3;
+  int64    Level = 4; // 分类级别：0->1级；1->2级
+  int64    ProductCount = 5;
+  string  ProductUnit = 6;
+  int64    NavStatus = 7; // 是否显示在导航栏：0->不显示；1->显示
+  int64    ShowStatus = 8; // 显示状态：0->不显示；1->显示
+  int64    Sort = 9;
+  string  Icon = 10; // 图标
+  string  Keywords = 11;
+  string  Description = 12; // 描述
+}
+
+message ProductCategoryAddReq {
+    BaseProductCategory ProductCategory = 1;
+}
+
+message ProductCategoryAddResp {
+  string pong = 1;
+}
+
+message ProductCategoryListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3;
+  int64 ParentId = 4;
+  int64    ShowStatus = 5;
+}
+
+
+message ProductCategoryListResp {
+  int64 total = 1;
+  repeated  BaseProductCategory list = 2;
+}
+
+message ProductCategoryUpdateReq {
+    BaseProductCategory ProductCategory = 1;
+}
+
+message ProductCategoryUpdateResp {
+  string pong = 1;
+}
+
+message ProductCategoryDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message ProductCategoryDeleteResp {
+  string pong = 1;
+}
+
+message QueryProductCategoryListReq {
+
+}
+message QueryProductCategoryListData{
+  int64    Id = 1;
+  string  Name = 2;
+  string  ImageUrl = 3;
+  repeated QueryProductCategoryListData  Children = 4;
+}
+
+message QueryProductCategoryListResp {
+  repeated  QueryProductCategoryListData list = 1;
+}
+
+service ProductCategoryService {
+  rpc ProductCategoryAdd(ProductCategoryAddReq) returns(ProductCategoryAddResp);
+  rpc ProductCategoryList(ProductCategoryListReq) returns(ProductCategoryListResp);
+  rpc ProductCategoryUpdate(ProductCategoryUpdateReq) returns(ProductCategoryUpdateResp);
+  rpc ProductCategoryDelete(ProductCategoryDeleteReq) returns(ProductCategoryDeleteResp);
+  rpc QueryProductCategoryList(QueryProductCategoryListReq) returns(QueryProductCategoryListResp);
+
+}

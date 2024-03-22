@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/album";
+
+/*相册相关定义*/
+
+message BaseAlbum {
+  int64    Id = 1;
+  string  Name = 2; // 相册名称
+  string  CoverPic = 3; // 相册封面图片的地址
+  int64    PicCount = 4; // 相册中图片的数量
+  int64    Sort = 5; // 相册的排序编号
+  string  Description = 6; // 相册的描述信息
+}
+
+
+message AlbumAddReq {
+  BaseAlbum Album = 1;
+}
+
+message AlbumAddResp {
+  string pong = 1;
+}
+
+
+message AlbumListReq {
+  int64 current = 1; // 当前页号
+  int64 pageSize = 2; // 每页展示几个内容
+}
+
+message AlbumListResp {
+  int64 total = 1;
+  repeated  BaseAlbum list = 2;
+}
+
+message AlbumUpdateReq {
+  BaseAlbum Album = 1;
+}
+
+message AlbumUpdateResp {
+  string pong = 1;
+}
+
+message AlbumDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message AlbumDeleteResp {
+  string pong = 1;
+}
+
+
+service  AlbumService {
+  rpc AlbumAdd(AlbumAddReq) returns(AlbumAddResp);
+  rpc AlbumList(AlbumListReq) returns(AlbumListResp);
+  rpc AlbumUpdate(AlbumUpdateReq) returns(AlbumUpdateResp);
+  rpc AlbumDelete(AlbumDeleteReq) returns(AlbumDeleteResp);
+}

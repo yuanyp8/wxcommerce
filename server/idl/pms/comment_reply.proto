@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/comment_reply";
+
+message BaseCommentReply {
+  int64      CommentId = 2;
+  string      MemberNickName = 3;
+  string      MemberIcon = 4;
+  string      Content = 5;
+  string  CreateTime = 6;
+  int64      Type = 7; // 评论人员类型；0->会员；1->管理员
+}
+
+
+message CommentReplayAddReq {
+  BaseCommentReply CommentReply = 1;
+}
+
+message CommentReplayAddResp {
+  string pong = 1;
+}
+
+message CommentReplayListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message CommentReplayListResp {
+  int64 total = 1;
+  repeated  BaseCommentReply list = 2;
+}
+
+message CommentReplayUpdateReq {
+  BaseCommentReply CommentReply = 1;
+}
+
+message CommentReplayUpdateResp {
+  string pong = 1;
+}
+
+message CommentReplayDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message CommentReplayDeleteResp {
+  string pong = 1;
+}
+
+service CommentReplayService {
+  rpc CommentReplayAdd(CommentReplayAddReq) returns(CommentReplayAddResp);
+  rpc CommentReplayList(CommentReplayListReq) returns(CommentReplayListResp);
+  rpc CommentReplayUpdate(CommentReplayUpdateReq) returns(CommentReplayUpdateResp);
+  rpc CommentReplayDelete(CommentReplayDeleteReq) returns(CommentReplayDeleteResp);
+}

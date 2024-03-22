@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_ladder";
+
+
+/*
+产品阶梯价格(只针对同商品)
+*/
+
+message  BaseProductLadder {
+  int64    Id = 1;
+  int64    ProductId = 2;
+  int64    Count = 3; // 满足的商品数量
+  float  Discount = 4; // 折扣
+  int64  Price = 5; // 折后价格
+}
+
+
+message ProductLadderAddReq {
+  BaseProductLadder ProductLadder = 1;
+}
+
+message ProductLadderAddResp {
+  string pong = 1;
+}
+
+message ProductLadderListReq {
+  int64    ProductId = 1;
+}
+
+message ProductLadderListResp {
+  int64 total = 1;
+  repeated  BaseProductLadder list = 2;
+}
+
+message ProductLadderUpdateReq {
+  BaseProductLadder ProductLadder = 1;
+}
+
+message ProductLadderUpdateResp {
+  string pong = 1;
+}
+
+message ProductLadderDeleteReq {
+  int64 id = 1;
+}
+
+message ProductLadderDeleteResp {
+  string pong = 1;
+}
+
+service ProductLadderService {
+  rpc ProductLadderAdd(ProductLadderAddReq) returns(ProductLadderAddResp);
+  rpc ProductLadderList(ProductLadderListReq) returns(ProductLadderListResp);
+  rpc ProductLadderUpdate(ProductLadderUpdateReq) returns(ProductLadderUpdateResp);
+  rpc ProductLadderDelete(ProductLadderDeleteReq) returns(ProductLadderDeleteResp);
+}

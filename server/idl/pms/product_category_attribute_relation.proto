@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/product_category_attribute_relation";
+
+
+/*
+产品的分类和属性的关系表，用于设置分类筛选条件（只支持一级分类）
+*/
+
+message  BaseProductCategoryAttributeRelation {
+  int64  Id = 1;
+  int64  ProductCategoryId = 2;
+  int64  ProductAttributeId = 3;
+}
+
+message ProductCategoryAttributeRelationAddReq {
+  BaseProductCategoryAttributeRelation ProductCategoryAttributeRelation = 1;
+}
+
+message ProductCategoryAttributeRelationAddResp {
+  string pong = 1;
+}
+
+message ProductCategoryAttributeRelationListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message ProductCategoryAttributeRelationListResp {
+  int64 total = 1;
+  repeated  BaseProductCategoryAttributeRelation list = 2;
+}
+
+message ProductCategoryAttributeRelationUpdateReq {
+  BaseProductCategoryAttributeRelation ProductCategoryAttributeRelation = 1;
+}
+
+message ProductCategoryAttributeRelationUpdateResp {
+  string pong = 1;
+}
+
+message ProductCategoryAttributeRelationDeleteReq {
+  int64 id = 1;
+}
+
+message ProductCategoryAttributeRelationDeleteResp {
+  string pong = 1;
+}
+service ProductCategoryAttributeRelationService {
+  rpc ProductCategoryAttributeRelationAdd(ProductCategoryAttributeRelationAddReq) returns(ProductCategoryAttributeRelationAddResp);
+  rpc ProductCategoryAttributeRelationList(ProductCategoryAttributeRelationListReq) returns(ProductCategoryAttributeRelationListResp);
+  rpc ProductCategoryAttributeRelationUpdate(ProductCategoryAttributeRelationUpdateReq) returns(ProductCategoryAttributeRelationUpdateResp);
+  rpc ProductCategoryAttributeRelationDelete(ProductCategoryAttributeRelationDeleteReq) returns(ProductCategoryAttributeRelationDeleteResp);
+}

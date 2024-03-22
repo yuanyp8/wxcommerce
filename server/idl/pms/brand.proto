@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/brand";
+
+message BaseBrand {
+  string  Name = 2; // 品牌名称
+  string  FirstLetter = 3; // 首字母
+  int64    Sort = 4; // 排序
+  int64    FactoryStatus = 5; // 是否为品牌制造商：0->不是；1->是
+  int64    ShowStatus = 6; // 订单编号
+  int64    ProductCount = 7; // 产品数量
+  int64    ProductCommentCount = 8; // 产品评论数量
+  string  Logo = 9; // 品牌logo
+  string  BigPic = 10; // 专区大图
+  string  BrandStory = 11; // 品牌故事
+}
+
+
+message BrandAddReq {
+  BaseBrand Brand = 1;
+}
+
+message BrandAddResp {
+  string pong = 1;
+}
+
+// 获取品牌列表
+message BrandListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string  Name = 3; // 品牌名称
+  int64    FactoryStatus = 4; // 是否为品牌制造商：0->不是；1->是
+  int64    ShowStatus = 5; // 订单编号
+}
+
+message BrandListByIdsReq {
+  repeated int64 ids = 1;
+}
+
+message BrandListResp {
+  int64 total = 1;
+  repeated  BaseBrand list = 2;
+}
+
+message BrandUpdateReq {
+    BaseBrand Brand = 1;
+}
+
+message BrandUpdateResp {
+  string pong = 1;
+}
+
+message BrandDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message BrandDeleteResp {
+  string pong = 1;
+}
+service BrandService {
+  rpc BrandAdd(BrandAddReq) returns(BrandAddResp);
+  rpc BrandList(BrandListReq) returns(BrandListResp);
+  rpc BrandListByIds(BrandListByIdsReq) returns(BrandListResp);
+  rpc BrandUpdate(BrandUpdateReq) returns(BrandUpdateResp);
+  rpc BrandDelete(BrandDeleteReq) returns(BrandDeleteResp);
+}

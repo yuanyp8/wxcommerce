@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package pms;
+
+option go_package = "pms/album_pic";
+
+// 往相册中增加图片
+message AlbumPicAddReq {
+  int64  AlbumId = 2; // 相册ID
+  string  Pic = 3; // 图片地址
+}
+
+message AlbumPicAddResp {
+  string pong = 1;
+}
+
+// 用于请求相册图片列表的信息
+message AlbumPicListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+}
+
+message AlbumPicListData{
+  int64    Id = 1; // 图片id
+  int64  AlbumId = 2; // 相册id
+  string  Pic = 3; // 图片地址
+}
+
+message AlbumPicListResp {
+  int64 total = 1;
+  repeated  AlbumPicListData list = 2;
+}
+
+// 更新具体id的图片的地址
+message AlbumPicUpdateReq {
+  int64    Id = 1;
+  int64  AlbumId = 2;
+  string  Pic = 3;
+}
+
+message AlbumPicUpdateResp {
+  string pong = 1;
+}
+
+// 根据图片id删除图片
+message AlbumPicDeleteReq {
+  repeated int64 ids = 1;
+}
+
+message AlbumPicDeleteResp {
+  string pong = 1;
+}
+
+service AlbumPicService {
+  rpc AlbumPicAdd(AlbumPicAddReq) returns(AlbumPicAddResp);
+  rpc AlbumPicList(AlbumPicListReq) returns(AlbumPicListResp);
+  rpc AlbumPicUpdate(AlbumPicUpdateReq) returns(AlbumPicUpdateResp);
+  rpc AlbumPicDelete(AlbumPicDeleteReq) returns(AlbumPicDeleteResp);
+}
+
+
