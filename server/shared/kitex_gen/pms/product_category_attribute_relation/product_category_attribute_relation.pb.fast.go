@@ -43,17 +43,17 @@ ReadFieldError:
 }
 
 func (x *BaseProductCategoryAttributeRelation) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *BaseProductCategoryAttributeRelation) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.ProductCategoryId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductCategoryId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *BaseProductCategoryAttributeRelation) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	x.ProductAttributeId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductAttributeId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -263,7 +263,7 @@ ReadFieldError:
 }
 
 func (x *ProductCategoryAttributeRelationDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -306,7 +306,7 @@ func (x *BaseProductCategoryAttributeRelation) fastWriteField1(buf []byte) (offs
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -314,7 +314,7 @@ func (x *BaseProductCategoryAttributeRelation) fastWriteField2(buf []byte) (offs
 	if x.ProductCategoryId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 2, x.GetProductCategoryId())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetProductCategoryId())
 	return offset
 }
 
@@ -322,7 +322,7 @@ func (x *BaseProductCategoryAttributeRelation) fastWriteField3(buf []byte) (offs
 	if x.ProductAttributeId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 3, x.GetProductAttributeId())
+	offset += fastpb.WriteUint64(buf[offset:], 3, x.GetProductAttributeId())
 	return offset
 }
 
@@ -454,7 +454,7 @@ func (x *ProductCategoryAttributeRelationDeleteReq) fastWriteField1(buf []byte) 
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -488,7 +488,7 @@ func (x *BaseProductCategoryAttributeRelation) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -496,7 +496,7 @@ func (x *BaseProductCategoryAttributeRelation) sizeField2() (n int) {
 	if x.ProductCategoryId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(2, x.GetProductCategoryId())
+	n += fastpb.SizeUint64(2, x.GetProductCategoryId())
 	return n
 }
 
@@ -504,7 +504,7 @@ func (x *BaseProductCategoryAttributeRelation) sizeField3() (n int) {
 	if x.ProductAttributeId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(3, x.GetProductAttributeId())
+	n += fastpb.SizeUint64(3, x.GetProductAttributeId())
 	return n
 }
 
@@ -636,7 +636,7 @@ func (x *ProductCategoryAttributeRelationDeleteReq) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 

@@ -58,7 +58,7 @@ ReadFieldError:
 }
 
 func (x *BaseCommentReply) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.CommentId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.CommentId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -295,8 +295,8 @@ ReadFieldError:
 func (x *CommentReplayDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -348,7 +348,7 @@ func (x *BaseCommentReply) fastWriteField2(buf []byte) (offset int) {
 	if x.CommentId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 2, x.GetCommentId())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetCommentId())
 	return offset
 }
 
@@ -523,7 +523,7 @@ func (x *CommentReplayDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -562,7 +562,7 @@ func (x *BaseCommentReply) sizeField2() (n int) {
 	if x.CommentId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(2, x.GetCommentId())
+	n += fastpb.SizeUint64(2, x.GetCommentId())
 	return n
 }
 
@@ -737,7 +737,7 @@ func (x *CommentReplayDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n

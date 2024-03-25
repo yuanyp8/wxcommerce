@@ -6,8 +6,8 @@ option go_package = "pms/comment";
 
 message BaseComment {
   // TODO: 去掉自增id
-  int64      Id = 1;
-  int64      ProductId = 2;
+  uint64      Id = 1;
+  uint64      ProductId = 2;
   string      MemberNickName = 3; // 用户昵称
   string      ProductName = 4; // 商品名称
   int64      Star = 5; // 评价星数：0->5
@@ -51,7 +51,7 @@ message CommentUpdateResp {
 }
 
 message CommentDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message CommentDeleteResp {

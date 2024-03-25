@@ -5,6 +5,7 @@ package album
 import (
 	fmt "fmt"
 	fastpb "github.com/cloudwego/fastpb"
+	response "github.com/yuanyp8/wxcommerce/shared/kitex_gen/base/response"
 )
 
 var (
@@ -12,7 +13,7 @@ var (
 	_ = fastpb.Skip
 )
 
-func (x *BaseAlbum) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *Album) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -54,35 +55,35 @@ func (x *BaseAlbum) FastRead(buf []byte, _type int8, number int32) (offset int, 
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_BaseAlbum[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_Album[number], err)
 }
 
-func (x *BaseAlbum) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+func (x *Album) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
-func (x *BaseAlbum) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+func (x *Album) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.Name, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *BaseAlbum) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+func (x *Album) fastReadField3(buf []byte, _type int8) (offset int, err error) {
 	x.CoverPic, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *BaseAlbum) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+func (x *Album) fastReadField4(buf []byte, _type int8) (offset int, err error) {
 	x.PicCount, offset, err = fastpb.ReadInt64(buf, _type)
 	return offset, err
 }
 
-func (x *BaseAlbum) fastReadField5(buf []byte, _type int8) (offset int, err error) {
+func (x *Album) fastReadField5(buf []byte, _type int8) (offset int, err error) {
 	x.Sort, offset, err = fastpb.ReadInt64(buf, _type)
 	return offset, err
 }
 
-func (x *BaseAlbum) fastReadField6(buf []byte, _type int8) (offset int, err error) {
+func (x *Album) fastReadField6(buf []byte, _type int8) (offset int, err error) {
 	x.Description, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
@@ -108,7 +109,7 @@ ReadFieldError:
 }
 
 func (x *AlbumAddReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v BaseAlbum
+	var v Album
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -138,8 +139,13 @@ ReadFieldError:
 }
 
 func (x *AlbumAddResp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Pong, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+	var v response.BaseResponse
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.BaseResponse = &v
+	return offset, nil
 }
 
 func (x *AlbumListReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -189,6 +195,11 @@ func (x *AlbumListResp) FastRead(buf []byte, _type int8, number int32) (offset i
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -208,12 +219,22 @@ func (x *AlbumListResp) fastReadField1(buf []byte, _type int8) (offset int, err 
 }
 
 func (x *AlbumListResp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	var v BaseAlbum
+	var v Album
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
 	x.List = append(x.List, &v)
+	return offset, nil
+}
+
+func (x *AlbumListResp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	var v response.BaseResponse
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.BaseResponse = &v
 	return offset, nil
 }
 
@@ -238,7 +259,7 @@ ReadFieldError:
 }
 
 func (x *AlbumUpdateReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v BaseAlbum
+	var v Album
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -268,8 +289,13 @@ ReadFieldError:
 }
 
 func (x *AlbumUpdateResp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Pong, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+	var v response.BaseResponse
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.BaseResponse = &v
+	return offset, nil
 }
 
 func (x *AlbumDeleteReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -295,8 +321,8 @@ ReadFieldError:
 func (x *AlbumDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -327,11 +353,16 @@ ReadFieldError:
 }
 
 func (x *AlbumDeleteResp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Pong, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+	var v response.BaseResponse
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.BaseResponse = &v
+	return offset, nil
 }
 
-func (x *BaseAlbum) FastWrite(buf []byte) (offset int) {
+func (x *Album) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -344,15 +375,15 @@ func (x *BaseAlbum) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField1(buf []byte) (offset int) {
+func (x *Album) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField2(buf []byte) (offset int) {
+func (x *Album) fastWriteField2(buf []byte) (offset int) {
 	if x.Name == "" {
 		return offset
 	}
@@ -360,7 +391,7 @@ func (x *BaseAlbum) fastWriteField2(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField3(buf []byte) (offset int) {
+func (x *Album) fastWriteField3(buf []byte) (offset int) {
 	if x.CoverPic == "" {
 		return offset
 	}
@@ -368,7 +399,7 @@ func (x *BaseAlbum) fastWriteField3(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField4(buf []byte) (offset int) {
+func (x *Album) fastWriteField4(buf []byte) (offset int) {
 	if x.PicCount == 0 {
 		return offset
 	}
@@ -376,7 +407,7 @@ func (x *BaseAlbum) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField5(buf []byte) (offset int) {
+func (x *Album) fastWriteField5(buf []byte) (offset int) {
 	if x.Sort == 0 {
 		return offset
 	}
@@ -384,7 +415,7 @@ func (x *BaseAlbum) fastWriteField5(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *BaseAlbum) fastWriteField6(buf []byte) (offset int) {
+func (x *Album) fastWriteField6(buf []byte) (offset int) {
 	if x.Description == "" {
 		return offset
 	}
@@ -417,10 +448,10 @@ func (x *AlbumAddResp) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *AlbumAddResp) fastWriteField1(buf []byte) (offset int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetPong())
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetBaseResponse())
 	return offset
 }
 
@@ -455,6 +486,7 @@ func (x *AlbumListResp) FastWrite(buf []byte) (offset int) {
 	}
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
 	return offset
 }
 
@@ -473,6 +505,14 @@ func (x *AlbumListResp) fastWriteField2(buf []byte) (offset int) {
 	for i := range x.GetList() {
 		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetList()[i])
 	}
+	return offset
+}
+
+func (x *AlbumListResp) fastWriteField3(buf []byte) (offset int) {
+	if x.BaseResponse == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 3, x.GetBaseResponse())
 	return offset
 }
 
@@ -501,10 +541,10 @@ func (x *AlbumUpdateResp) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *AlbumUpdateResp) fastWriteField1(buf []byte) (offset int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetPong())
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetBaseResponse())
 	return offset
 }
 
@@ -523,7 +563,7 @@ func (x *AlbumDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -538,14 +578,14 @@ func (x *AlbumDeleteResp) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *AlbumDeleteResp) fastWriteField1(buf []byte) (offset int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetPong())
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetBaseResponse())
 	return offset
 }
 
-func (x *BaseAlbum) Size() (n int) {
+func (x *Album) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -558,15 +598,15 @@ func (x *BaseAlbum) Size() (n int) {
 	return n
 }
 
-func (x *BaseAlbum) sizeField1() (n int) {
+func (x *Album) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
-func (x *BaseAlbum) sizeField2() (n int) {
+func (x *Album) sizeField2() (n int) {
 	if x.Name == "" {
 		return n
 	}
@@ -574,7 +614,7 @@ func (x *BaseAlbum) sizeField2() (n int) {
 	return n
 }
 
-func (x *BaseAlbum) sizeField3() (n int) {
+func (x *Album) sizeField3() (n int) {
 	if x.CoverPic == "" {
 		return n
 	}
@@ -582,7 +622,7 @@ func (x *BaseAlbum) sizeField3() (n int) {
 	return n
 }
 
-func (x *BaseAlbum) sizeField4() (n int) {
+func (x *Album) sizeField4() (n int) {
 	if x.PicCount == 0 {
 		return n
 	}
@@ -590,7 +630,7 @@ func (x *BaseAlbum) sizeField4() (n int) {
 	return n
 }
 
-func (x *BaseAlbum) sizeField5() (n int) {
+func (x *Album) sizeField5() (n int) {
 	if x.Sort == 0 {
 		return n
 	}
@@ -598,7 +638,7 @@ func (x *BaseAlbum) sizeField5() (n int) {
 	return n
 }
 
-func (x *BaseAlbum) sizeField6() (n int) {
+func (x *Album) sizeField6() (n int) {
 	if x.Description == "" {
 		return n
 	}
@@ -631,10 +671,10 @@ func (x *AlbumAddResp) Size() (n int) {
 }
 
 func (x *AlbumAddResp) sizeField1() (n int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetPong())
+	n += fastpb.SizeMessage(1, x.GetBaseResponse())
 	return n
 }
 
@@ -669,6 +709,7 @@ func (x *AlbumListResp) Size() (n int) {
 	}
 	n += x.sizeField1()
 	n += x.sizeField2()
+	n += x.sizeField3()
 	return n
 }
 
@@ -687,6 +728,14 @@ func (x *AlbumListResp) sizeField2() (n int) {
 	for i := range x.GetList() {
 		n += fastpb.SizeMessage(2, x.GetList()[i])
 	}
+	return n
+}
+
+func (x *AlbumListResp) sizeField3() (n int) {
+	if x.BaseResponse == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(3, x.GetBaseResponse())
 	return n
 }
 
@@ -715,10 +764,10 @@ func (x *AlbumUpdateResp) Size() (n int) {
 }
 
 func (x *AlbumUpdateResp) sizeField1() (n int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetPong())
+	n += fastpb.SizeMessage(1, x.GetBaseResponse())
 	return n
 }
 
@@ -737,7 +786,7 @@ func (x *AlbumDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n
@@ -752,14 +801,14 @@ func (x *AlbumDeleteResp) Size() (n int) {
 }
 
 func (x *AlbumDeleteResp) sizeField1() (n int) {
-	if x.Pong == "" {
+	if x.BaseResponse == nil {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetPong())
+	n += fastpb.SizeMessage(1, x.GetBaseResponse())
 	return n
 }
 
-var fieldIDToName_BaseAlbum = map[int32]string{
+var fieldIDToName_Album = map[int32]string{
 	1: "Id",
 	2: "Name",
 	3: "CoverPic",
@@ -773,7 +822,7 @@ var fieldIDToName_AlbumAddReq = map[int32]string{
 }
 
 var fieldIDToName_AlbumAddResp = map[int32]string{
-	1: "Pong",
+	1: "BaseResponse",
 }
 
 var fieldIDToName_AlbumListReq = map[int32]string{
@@ -784,6 +833,7 @@ var fieldIDToName_AlbumListReq = map[int32]string{
 var fieldIDToName_AlbumListResp = map[int32]string{
 	1: "Total",
 	2: "List",
+	3: "BaseResponse",
 }
 
 var fieldIDToName_AlbumUpdateReq = map[int32]string{
@@ -791,7 +841,7 @@ var fieldIDToName_AlbumUpdateReq = map[int32]string{
 }
 
 var fieldIDToName_AlbumUpdateResp = map[int32]string{
-	1: "Pong",
+	1: "BaseResponse",
 }
 
 var fieldIDToName_AlbumDeleteReq = map[int32]string{
@@ -799,5 +849,7 @@ var fieldIDToName_AlbumDeleteReq = map[int32]string{
 }
 
 var fieldIDToName_AlbumDeleteResp = map[int32]string{
-	1: "Pong",
+	1: "BaseResponse",
 }
+
+var _ = response.File_base_response_proto

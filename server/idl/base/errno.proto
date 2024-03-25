@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package errno;
+
+option go_package = "base/errno";
+
+
+enum Err {
+  Success            = 0;
+  NoRoute            = 1;
+  NoMethod           = 2;
+  BadRequest         = 10000;
+  ParamsErr          = 10001;
+  AuthorizeFail      = 10002;
+  TooManyRequest     = 10003;
+  ServiceErr         = 20000;
+
+  RPCPmsAlbumSrvErr       = 30000;
+  PmsAlbumSrvErr          = 30001;
+
+  RPCPmsAlbumPicSrvErr       = 30002;
+  PmsAlbumPicSrvErr          = 30003;
+
+  RPCPmsBrandSrvErr = 30004;
+  PmsBrandSrvErr         = 30005;
+
+  RPCPmsCommentSrvErr = 30006;
+  PmsCommentSrvErr         = 30007;
+
+  RPCPmsCommentReplySrvErr = 30008;
+  PmsCommentReplySrvErr         = 30009;
+
+  RPCPmsMemberPriceSrvErr = 30010;
+  PmsMemberPriceSrvErr         = 30011;
+
+  RPCPmsProductSrvErr         = 30012;
+  PmsProductSrvErr         = 30013;
+
+  RPCPmsProductAttrSrvErr = 30014;
+  PmsProductAttrSrvErr         = 30015;
+
+  RPCPmsProductAttributeCategorySrvErr = 30016;
+  PmsProductAttributeCategorySrvErr         = 30017;
+
+  RPCPmsProductAttributeValueSrvErr = 30018;
+  PmsProductAttributeValueSrvErr         = 30019;
+
+  RPCPmsProductCategorySrvErr = 30020;
+  PmsProductCategorySrvErr         = 30021;
+
+  RPCPmsProductCategoryAttributeRelationSrvErr = 30022;
+  PmsProductCategoryAttributeRelationSrvErr         = 30023;
+
+  RPCPmsProductFullReductionSrvErr = 30024;
+  PmsProductFullReductionSrvErr         = 30025;
+
+  RPCPmsProductLadderSrvErr = 30026;
+  PmsProductLadderSrvErr         = 30027;
+
+  RPCPmsProductVerifyRecordSrvErr = 30028;
+  PmsProductVerifyRecordSrvErr         = 30029;
+
+  RPCPmsSkuStockSrvErr = 30030;
+  PmsSkuStockSrvErr         = 30031;
+
+    RecordNotFound     = 80000;
+    RecordAlreadyExist = 80001;
+    DirtyData          = 80003;
+  
+//  RPCBlobSrvErr      = 40000;
+//  BlobSrvErr         = 40001;
+//  RPCCarSrvErr       = 50000;
+//  CarSrvErr          = 50001;
+//  RPCProfileSrvErr   = 60000;
+//  ProfileSrvErr      = 60001;
+//  RPCTripSrvErr      = 70000;
+//  TripSrvErr         = 70001;
+//  RecordNotFound     = 80000;
+//  RecordAlreadyExist = 80001;
+//  DirtyData          = 80003;
+}
+
+
+

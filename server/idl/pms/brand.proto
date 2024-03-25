@@ -5,6 +5,7 @@ package pms;
 option go_package = "pms/brand";
 
 message BaseBrand {
+  uint64 Id = 1;
   string  Name = 2; // 品牌名称
   string  FirstLetter = 3; // 首字母
   int64    Sort = 4; // 排序
@@ -36,7 +37,7 @@ message BrandListReq {
 }
 
 message BrandListByIdsReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message BrandListResp {
@@ -53,7 +54,7 @@ message BrandUpdateResp {
 }
 
 message BrandDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message BrandDeleteResp {

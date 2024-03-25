@@ -14,7 +14,7 @@ type Client interface {
 	AlbumAdd(ctx context.Context, Req *album.AlbumAddReq, callOptions ...callopt.Option) (r *album.AlbumAddResp, err error)
 	AlbumList(ctx context.Context, Req *album.AlbumListReq, callOptions ...callopt.Option) (r *album.AlbumListResp, err error)
 	AlbumUpdate(ctx context.Context, Req *album.AlbumUpdateReq, callOptions ...callopt.Option) (r *album.AlbumUpdateResp, err error)
-	AlbumDelete(ctx context.Context, Req *album.AlbumDeleteReq, callOptions ...callopt.Option) (r *album.AlbumDeleteResp, err error)
+	AlbumMDelete(ctx context.Context, Req *album.AlbumDeleteReq, callOptions ...callopt.Option) (r *album.AlbumDeleteResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -61,7 +61,7 @@ func (p *kAlbumServiceClient) AlbumUpdate(ctx context.Context, Req *album.AlbumU
 	return p.kClient.AlbumUpdate(ctx, Req)
 }
 
-func (p *kAlbumServiceClient) AlbumDelete(ctx context.Context, Req *album.AlbumDeleteReq, callOptions ...callopt.Option) (r *album.AlbumDeleteResp, err error) {
+func (p *kAlbumServiceClient) AlbumMDelete(ctx context.Context, Req *album.AlbumDeleteReq, callOptions ...callopt.Option) (r *album.AlbumDeleteResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.AlbumDelete(ctx, Req)
+	return p.kClient.AlbumMDelete(ctx, Req)
 }

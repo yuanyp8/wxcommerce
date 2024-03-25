@@ -38,7 +38,7 @@ type ServerConfig struct {
 
 func newServerConfig() *ServerConfig {
 	return &ServerConfig{
-		Name:        "pms",
+		Name:        "pmsmodel",
 		Host:        "",
 		PasetoInfo:  newPasetoConfig(),
 		MysqlInfo:   newMysqlConfig(),
@@ -95,8 +95,8 @@ type PasetoConfig struct {
 
 func newPasetoConfig() *PasetoConfig {
 	return &PasetoConfig{
-		SecretKey: "pms",
-		Implicit:  "pms",
+		SecretKey: "pmsmodel",
+		Implicit:  "pmsmodel",
 	}
 }
 

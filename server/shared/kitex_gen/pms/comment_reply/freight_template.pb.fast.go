@@ -14,6 +14,11 @@ var (
 
 func (x *BaseFreightTemplate) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	case 2:
 		offset, err = x.fastReadField2(buf, _type)
 		if err != nil {
@@ -60,6 +65,11 @@ SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
 	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_BaseFreightTemplate[number], err)
+}
+
+func (x *BaseFreightTemplate) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
 }
 
 func (x *BaseFreightTemplate) fastReadField2(buf []byte, _type int8) (offset int, err error) {
@@ -305,8 +315,8 @@ ReadFieldError:
 func (x *FreightTemplateDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -345,6 +355,7 @@ func (x *BaseFreightTemplate) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
@@ -352,6 +363,14 @@ func (x *BaseFreightTemplate) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField7(buf[offset:])
 	offset += x.fastWriteField8(buf[offset:])
 	offset += x.fastWriteField61(buf[offset:])
+	return offset
+}
+
+func (x *BaseFreightTemplate) fastWriteField1(buf []byte) (offset int) {
+	if x.Id == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -542,7 +561,7 @@ func (x *FreightTemplateDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -568,6 +587,7 @@ func (x *BaseFreightTemplate) Size() (n int) {
 	if x == nil {
 		return n
 	}
+	n += x.sizeField1()
 	n += x.sizeField2()
 	n += x.sizeField3()
 	n += x.sizeField4()
@@ -575,6 +595,14 @@ func (x *BaseFreightTemplate) Size() (n int) {
 	n += x.sizeField7()
 	n += x.sizeField8()
 	n += x.sizeField61()
+	return n
+}
+
+func (x *BaseFreightTemplate) sizeField1() (n int) {
+	if x.Id == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -765,7 +793,7 @@ func (x *FreightTemplateDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n
@@ -788,6 +816,7 @@ func (x *FreightTemplateDeleteResp) sizeField1() (n int) {
 }
 
 var fieldIDToName_BaseFreightTemplate = map[int32]string{
+	1:  "Id",
 	2:  "Name",
 	3:  "ChargeType",
 	4:  "FirstWeight",

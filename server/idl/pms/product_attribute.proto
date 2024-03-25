@@ -13,7 +13,7 @@ option go_package = "pms/product_attribute";
 
 
 message BaseProductAttribute {
-  int64    Id = 1;
+  uint64    Id = 1;
   int64    ProductAttributeCategoryId = 2;
   string  Name = 3;
   int64    SelectType = 4; // 属性选择类型：0->唯一；1->单选；2->多选
@@ -57,7 +57,7 @@ message ProductAttributeUpdateResp {
 }
 
 message ProductAttributeDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message ProductAttributeDeleteResp {

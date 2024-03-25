@@ -5,7 +5,7 @@ package pms;
 option go_package = "pms/product_attribute_value";
 
 message BaseProductAttributeValue {
-  int64    Id = 1;
+  uint64    Id = 1;
   int64    ProductId = 2;
   int64    ProductAttributeId = 3;
   string  Value = 4; // 手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
@@ -20,7 +20,7 @@ message ProductAttributeValueAddResp {
 }
 
 message ProductAttributeValueListReq {
-  int64    ProductId = 1;
+  uint64    ProductId = 1;
 }
 
 
@@ -38,7 +38,7 @@ message ProductAttributeValueUpdateResp {
 }
 
 message ProductAttributeValueDeleteReq {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message ProductAttributeValueDeleteResp {

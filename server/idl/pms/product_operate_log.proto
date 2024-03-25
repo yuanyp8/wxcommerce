@@ -9,8 +9,8 @@ option go_package = "pms/product_full_reduction";
 */
 
 message BaseProductOperateLog{
-  int64      Id = 1;
-  int64      ProductId = 2;
+  uint64      Id = 1;
+  uint64      ProductId = 2;
   int64    PriceOld = 3;
   int64    PriceNew = 4;
   int64    SalePriceOld = 5;
@@ -51,7 +51,7 @@ message ProductOperateLogUpdateResp {
 }
 
 message ProductOperateLogDeleteReq {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message ProductOperateLogDeleteResp {

@@ -10,8 +10,8 @@ option go_package = "pms/product_ladder";
 */
 
 message  BaseProductLadder {
-  int64    Id = 1;
-  int64    ProductId = 2;
+  uint64    Id = 1;
+  uint64    ProductId = 2;
   int64    Count = 3; // 满足的商品数量
   float  Discount = 4; // 折扣
   int64  Price = 5; // 折后价格
@@ -27,7 +27,7 @@ message ProductLadderAddResp {
 }
 
 message ProductLadderListReq {
-  int64    ProductId = 1;
+  uint64    ProductId = 1;
 }
 
 message ProductLadderListResp {
@@ -44,7 +44,7 @@ message ProductLadderUpdateResp {
 }
 
 message ProductLadderDeleteReq {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message ProductLadderDeleteResp {

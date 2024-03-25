@@ -53,12 +53,12 @@ ReadFieldError:
 }
 
 func (x *BaseProductLadder) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *BaseProductLadder) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.ProductId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -153,7 +153,7 @@ ReadFieldError:
 }
 
 func (x *ProductLadderListReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -273,7 +273,7 @@ ReadFieldError:
 }
 
 func (x *ProductLadderDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -318,7 +318,7 @@ func (x *BaseProductLadder) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -326,7 +326,7 @@ func (x *BaseProductLadder) fastWriteField2(buf []byte) (offset int) {
 	if x.ProductId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 2, x.GetProductId())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetProductId())
 	return offset
 }
 
@@ -398,7 +398,7 @@ func (x *ProductLadderListReq) fastWriteField1(buf []byte) (offset int) {
 	if x.ProductId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductId())
 	return offset
 }
 
@@ -473,7 +473,7 @@ func (x *ProductLadderDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -509,7 +509,7 @@ func (x *BaseProductLadder) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -517,7 +517,7 @@ func (x *BaseProductLadder) sizeField2() (n int) {
 	if x.ProductId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(2, x.GetProductId())
+	n += fastpb.SizeUint64(2, x.GetProductId())
 	return n
 }
 
@@ -589,7 +589,7 @@ func (x *ProductLadderListReq) sizeField1() (n int) {
 	if x.ProductId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductId())
+	n += fastpb.SizeUint64(1, x.GetProductId())
 	return n
 }
 
@@ -664,7 +664,7 @@ func (x *ProductLadderDeleteReq) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 

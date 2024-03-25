@@ -7,7 +7,7 @@ option go_package = "pms/product_attribute_category";
 /*产品属性分类*/
 
 message BaseProductAttributeCategory{
-  int64    Id = 1;
+  uint64    Id = 1;
   string  Name = 2;
   int64    AttributeCount = 3; // 属性数量
   int64    ParamCount = 4; // 参数数量
@@ -43,7 +43,7 @@ message ProductAttributeCategoryUpdateResp {
 }
 
 message ProductAttributeCategoryDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message ProductAttributeCategoryDeleteResp {

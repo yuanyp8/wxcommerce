@@ -88,12 +88,12 @@ ReadFieldError:
 }
 
 func (x *BaseProductCategory) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *BaseProductCategory) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.ParentId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ParentId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -258,7 +258,7 @@ func (x *ProductCategoryListReq) fastReadField3(buf []byte, _type int8) (offset 
 }
 
 func (x *ProductCategoryListReq) fastReadField4(buf []byte, _type int8) (offset int, err error) {
-	x.ParentId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ParentId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -385,8 +385,8 @@ ReadFieldError:
 func (x *ProductCategoryDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -470,7 +470,7 @@ ReadFieldError:
 }
 
 func (x *QueryProductCategoryListData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -547,7 +547,7 @@ func (x *BaseProductCategory) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -555,7 +555,7 @@ func (x *BaseProductCategory) fastWriteField2(buf []byte) (offset int) {
 	if x.ParentId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 2, x.GetParentId())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetParentId())
 	return offset
 }
 
@@ -711,7 +711,7 @@ func (x *ProductCategoryListReq) fastWriteField4(buf []byte) (offset int) {
 	if x.ParentId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 4, x.GetParentId())
+	offset += fastpb.WriteUint64(buf[offset:], 4, x.GetParentId())
 	return offset
 }
 
@@ -797,7 +797,7 @@ func (x *ProductCategoryDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -841,7 +841,7 @@ func (x *QueryProductCategoryListData) fastWriteField1(buf []byte) (offset int) 
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -912,7 +912,7 @@ func (x *BaseProductCategory) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -920,7 +920,7 @@ func (x *BaseProductCategory) sizeField2() (n int) {
 	if x.ParentId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(2, x.GetParentId())
+	n += fastpb.SizeUint64(2, x.GetParentId())
 	return n
 }
 
@@ -1076,7 +1076,7 @@ func (x *ProductCategoryListReq) sizeField4() (n int) {
 	if x.ParentId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(4, x.GetParentId())
+	n += fastpb.SizeUint64(4, x.GetParentId())
 	return n
 }
 
@@ -1162,7 +1162,7 @@ func (x *ProductCategoryDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n
@@ -1206,7 +1206,7 @@ func (x *QueryProductCategoryListData) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 

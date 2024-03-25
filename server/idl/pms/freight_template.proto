@@ -5,6 +5,7 @@ package pms;
 option go_package = "pms/comment_reply";
 
 message BaseFreightTemplate {
+  uint64    Id = 1;
   string    Name = 2; // 运费模版名称
   int64    ChargeType = 3; // 计费类型:0->按重量；1->按件数
   int64  FirstWeight = 4; // 首重kg
@@ -42,7 +43,7 @@ message FreightTemplateUpdateResp {
 }
 
 message FreightTemplateDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message FreightTemplateDeleteResp {

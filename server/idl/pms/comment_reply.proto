@@ -5,7 +5,7 @@ package pms;
 option go_package = "pms/comment_reply";
 
 message BaseCommentReply {
-  int64      CommentId = 2;
+  uint64      CommentId = 2;
   string      MemberNickName = 3;
   string      MemberIcon = 4;
   string      Content = 5;
@@ -41,7 +41,7 @@ message CommentReplayUpdateResp {
 }
 
 message CommentReplayDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message CommentReplayDeleteResp {

@@ -88,7 +88,7 @@ ReadFieldError:
 }
 
 func (x *BaseProductAttribute) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -385,8 +385,8 @@ ReadFieldError:
 func (x *ProductAttributeDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -444,7 +444,7 @@ func (x *BaseProductAttribute) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -694,7 +694,7 @@ func (x *ProductAttributeDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -739,7 +739,7 @@ func (x *BaseProductAttribute) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -989,7 +989,7 @@ func (x *ProductAttributeDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n

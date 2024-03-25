@@ -10,9 +10,9 @@ option go_package = "pms/product_category_attribute_relation";
 */
 
 message  BaseProductCategoryAttributeRelation {
-  int64  Id = 1;
-  int64  ProductCategoryId = 2;
-  int64  ProductAttributeId = 3;
+  uint64  Id = 1;
+  uint64  ProductCategoryId = 2;
+  uint64  ProductAttributeId = 3;
 }
 
 message ProductCategoryAttributeRelationAddReq {
@@ -42,7 +42,7 @@ message ProductCategoryAttributeRelationUpdateResp {
 }
 
 message ProductCategoryAttributeRelationDeleteReq {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message ProductCategoryAttributeRelationDeleteResp {

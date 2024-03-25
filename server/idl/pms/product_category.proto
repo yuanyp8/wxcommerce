@@ -6,8 +6,8 @@ option go_package = "pms/product_category";
 
 
 message BaseProductCategory {
-  int64    Id = 1;
-  int64    ParentId = 2; // 上级分类的编号：0表示一级分类
+  uint64    Id = 1;
+  uint64    ParentId = 2; // 上级分类的编号：0表示一级分类
   string  Name = 3;
   int64    Level = 4; // 分类级别：0->1级；1->2级
   int64    ProductCount = 5;
@@ -32,7 +32,7 @@ message ProductCategoryListReq {
   int64 current = 1;
   int64 pageSize = 2;
   string  Name = 3;
-  int64 ParentId = 4;
+  uint64 ParentId = 4;
   int64    ShowStatus = 5;
 }
 
@@ -51,7 +51,7 @@ message ProductCategoryUpdateResp {
 }
 
 message ProductCategoryDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message ProductCategoryDeleteResp {
@@ -62,7 +62,7 @@ message QueryProductCategoryListReq {
 
 }
 message QueryProductCategoryListData{
-  int64    Id = 1;
+  uint64    Id = 1;
   string  Name = 2;
   string  ImageUrl = 3;
   repeated QueryProductCategoryListData  Children = 4;

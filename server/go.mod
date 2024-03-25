@@ -9,6 +9,7 @@ require (
 	github.com/cloudwego/kitex v0.9.1
 	github.com/go-playground/validator/v10 v10.19.0
 	github.com/hashicorp/consul/api v1.28.2
+	github.com/jinzhu/gorm v1.9.16
 	github.com/kitex-contrib/obs-opentelemetry/logging/zap v0.0.0-20240305123358-828863cc5853
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
@@ -21,6 +22,7 @@ require (
 require (
 	github.com/apache/thrift v0.13.0 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
+	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package response;
+
+option go_package = "base/response";
+
+message BaseResponse {
+  int64 status_code = 1;
+  string   status_message = 2;
+  int64 service_time = 3;
+}
+
+message NilResponse {}

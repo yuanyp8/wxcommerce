@@ -32,7 +32,7 @@ func newConsulConfig() *ConsulConfig {
 	return &ConsulConfig{
 		Host: "127.0.0.1",
 		Port: 8500,
-		Key:  "wxcommerce/pms",
+		Key:  "wxcommerce/pmsmodel",
 	}
 }
 

@@ -36,10 +36,10 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
-	"AlbumDelete": kitex.NewMethodInfo(
-		albumDeleteHandler,
-		newAlbumDeleteArgs,
-		newAlbumDeleteResult,
+	"AlbumMDelete": kitex.NewMethodInfo(
+		albumMDeleteHandler,
+		newAlbumMDeleteArgs,
+		newAlbumMDeleteResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
@@ -568,7 +568,7 @@ func (p *AlbumUpdateResult) GetResult() interface{} {
 	return p.Success
 }
 
-func albumDeleteHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+func albumMDeleteHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	switch s := arg.(type) {
 	case *streaming.Args:
 		st := s.Stream
@@ -576,64 +576,64 @@ func albumDeleteHandler(ctx context.Context, handler interface{}, arg, result in
 		if err := st.RecvMsg(req); err != nil {
 			return err
 		}
-		resp, err := handler.(album.AlbumService).AlbumDelete(ctx, req)
+		resp, err := handler.(album.AlbumService).AlbumMDelete(ctx, req)
 		if err != nil {
 			return err
 		}
 		return st.SendMsg(resp)
-	case *AlbumDeleteArgs:
-		success, err := handler.(album.AlbumService).AlbumDelete(ctx, s.Req)
+	case *AlbumMDeleteArgs:
+		success, err := handler.(album.AlbumService).AlbumMDelete(ctx, s.Req)
 		if err != nil {
 			return err
 		}
-		realResult := result.(*AlbumDeleteResult)
+		realResult := result.(*AlbumMDeleteResult)
 		realResult.Success = success
 		return nil
 	default:
 		return errInvalidMessageType
 	}
 }
-func newAlbumDeleteArgs() interface{} {
-	return &AlbumDeleteArgs{}
+func newAlbumMDeleteArgs() interface{} {
+	return &AlbumMDeleteArgs{}
 }
 
-func newAlbumDeleteResult() interface{} {
-	return &AlbumDeleteResult{}
+func newAlbumMDeleteResult() interface{} {
+	return &AlbumMDeleteResult{}
 }
 
-type AlbumDeleteArgs struct {
+type AlbumMDeleteArgs struct {
 	Req *album.AlbumDeleteReq
 }
 
-func (p *AlbumDeleteArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *AlbumMDeleteArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetReq() {
 		p.Req = new(album.AlbumDeleteReq)
 	}
 	return p.Req.FastRead(buf, _type, number)
 }
 
-func (p *AlbumDeleteArgs) FastWrite(buf []byte) (n int) {
+func (p *AlbumMDeleteArgs) FastWrite(buf []byte) (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.FastWrite(buf)
 }
 
-func (p *AlbumDeleteArgs) Size() (n int) {
+func (p *AlbumMDeleteArgs) Size() (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.Size()
 }
 
-func (p *AlbumDeleteArgs) Marshal(out []byte) ([]byte, error) {
+func (p *AlbumMDeleteArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, nil
 	}
 	return proto.Marshal(p.Req)
 }
 
-func (p *AlbumDeleteArgs) Unmarshal(in []byte) error {
+func (p *AlbumMDeleteArgs) Unmarshal(in []byte) error {
 	msg := new(album.AlbumDeleteReq)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
@@ -642,58 +642,58 @@ func (p *AlbumDeleteArgs) Unmarshal(in []byte) error {
 	return nil
 }
 
-var AlbumDeleteArgs_Req_DEFAULT *album.AlbumDeleteReq
+var AlbumMDeleteArgs_Req_DEFAULT *album.AlbumDeleteReq
 
-func (p *AlbumDeleteArgs) GetReq() *album.AlbumDeleteReq {
+func (p *AlbumMDeleteArgs) GetReq() *album.AlbumDeleteReq {
 	if !p.IsSetReq() {
-		return AlbumDeleteArgs_Req_DEFAULT
+		return AlbumMDeleteArgs_Req_DEFAULT
 	}
 	return p.Req
 }
 
-func (p *AlbumDeleteArgs) IsSetReq() bool {
+func (p *AlbumMDeleteArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *AlbumDeleteArgs) GetFirstArgument() interface{} {
+func (p *AlbumMDeleteArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-type AlbumDeleteResult struct {
+type AlbumMDeleteResult struct {
 	Success *album.AlbumDeleteResp
 }
 
-var AlbumDeleteResult_Success_DEFAULT *album.AlbumDeleteResp
+var AlbumMDeleteResult_Success_DEFAULT *album.AlbumDeleteResp
 
-func (p *AlbumDeleteResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *AlbumMDeleteResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetSuccess() {
 		p.Success = new(album.AlbumDeleteResp)
 	}
 	return p.Success.FastRead(buf, _type, number)
 }
 
-func (p *AlbumDeleteResult) FastWrite(buf []byte) (n int) {
+func (p *AlbumMDeleteResult) FastWrite(buf []byte) (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.FastWrite(buf)
 }
 
-func (p *AlbumDeleteResult) Size() (n int) {
+func (p *AlbumMDeleteResult) Size() (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.Size()
 }
 
-func (p *AlbumDeleteResult) Marshal(out []byte) ([]byte, error) {
+func (p *AlbumMDeleteResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
 		return out, nil
 	}
 	return proto.Marshal(p.Success)
 }
 
-func (p *AlbumDeleteResult) Unmarshal(in []byte) error {
+func (p *AlbumMDeleteResult) Unmarshal(in []byte) error {
 	msg := new(album.AlbumDeleteResp)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
@@ -702,22 +702,22 @@ func (p *AlbumDeleteResult) Unmarshal(in []byte) error {
 	return nil
 }
 
-func (p *AlbumDeleteResult) GetSuccess() *album.AlbumDeleteResp {
+func (p *AlbumMDeleteResult) GetSuccess() *album.AlbumDeleteResp {
 	if !p.IsSetSuccess() {
-		return AlbumDeleteResult_Success_DEFAULT
+		return AlbumMDeleteResult_Success_DEFAULT
 	}
 	return p.Success
 }
 
-func (p *AlbumDeleteResult) SetSuccess(x interface{}) {
+func (p *AlbumMDeleteResult) SetSuccess(x interface{}) {
 	p.Success = x.(*album.AlbumDeleteResp)
 }
 
-func (p *AlbumDeleteResult) IsSetSuccess() bool {
+func (p *AlbumMDeleteResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *AlbumDeleteResult) GetResult() interface{} {
+func (p *AlbumMDeleteResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -761,11 +761,11 @@ func (p *kClient) AlbumUpdate(ctx context.Context, Req *album.AlbumUpdateReq) (r
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) AlbumDelete(ctx context.Context, Req *album.AlbumDeleteReq) (r *album.AlbumDeleteResp, err error) {
-	var _args AlbumDeleteArgs
+func (p *kClient) AlbumMDelete(ctx context.Context, Req *album.AlbumDeleteReq) (r *album.AlbumDeleteResp, err error) {
+	var _args AlbumMDeleteArgs
 	_args.Req = Req
-	var _result AlbumDeleteResult
-	if err = p.c.Call(ctx, "AlbumDelete", &_args, &_result); err != nil {
+	var _result AlbumMDeleteResult
+	if err = p.c.Call(ctx, "AlbumMDelete", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

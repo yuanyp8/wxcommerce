@@ -10,8 +10,8 @@ option go_package = "pms/product_full_reduction";
 
 
 message BaseProductFullReduction {
-  int64    Id = 1;
-  int64    ProductId = 2;
+  uint64    Id = 1;
+  uint64    ProductId = 2;
   float  FullPrice = 3;
   float  ReducePrice = 4;
 }
@@ -44,7 +44,7 @@ message ProductFullReductionUpdateResp {
 }
 
 message ProductFullReductionDeleteReq {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message ProductFullReductionDeleteResp {

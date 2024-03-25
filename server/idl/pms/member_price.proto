@@ -6,9 +6,9 @@ option go_package = "pms/member_price";
 
 
 message BaseMemberPrice {
-  int64    Id = 1;
-  int64    ProductId = 2; // 商品id
-  int64    MemberLevelId = 3; // 会员等级id
+  uint64    Id = 1;
+  uint64    ProductId = 2; // 商品id
+  uint64    MemberLevelId = 3; // 会员等级id
   int64  MemberPrice = 4; // 会员价格
   string    MemberLevelName = 5; // 会员等级名称
 }
@@ -41,7 +41,7 @@ message MemberPriceUpdateResp {
 }
 
 message MemberPriceDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message MemberPriceDeleteResp {

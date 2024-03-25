@@ -83,12 +83,12 @@ ReadFieldError:
 }
 
 func (x *BaseSkuStock) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *BaseSkuStock) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.ProductId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -213,7 +213,7 @@ ReadFieldError:
 }
 
 func (x *SkuStockListReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -335,8 +335,8 @@ ReadFieldError:
 func (x *SkuStockDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	offset, err = fastpb.ReadList(buf, _type,
 		func(buf []byte, _type int8) (n int, err error) {
-			var v int64
-			v, offset, err = fastpb.ReadInt64(buf, _type)
+			var v uint64
+			v, offset, err = fastpb.ReadUint64(buf, _type)
 			if err != nil {
 				return offset, err
 			}
@@ -427,7 +427,7 @@ ReadFieldError:
 }
 
 func (x *ReleaseSkuStockLockData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductSkuId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductSkuId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -517,7 +517,7 @@ ReadFieldError:
 }
 
 func (x *LockSkuStockLockData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductSkuId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductSkuId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -572,7 +572,7 @@ ReadFieldError:
 }
 
 func (x *QuerySkuStockByProductSkuIdReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductSkuId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductSkuId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -598,7 +598,7 @@ func (x *BaseSkuStock) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -606,7 +606,7 @@ func (x *BaseSkuStock) fastWriteField2(buf []byte) (offset int) {
 	if x.ProductId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 2, x.GetProductId())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetProductId())
 	return offset
 }
 
@@ -726,7 +726,7 @@ func (x *SkuStockListReq) fastWriteField1(buf []byte) (offset int) {
 	if x.ProductId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductId())
 	return offset
 }
 
@@ -804,7 +804,7 @@ func (x *SkuStockDeleteReq) fastWriteField1(buf []byte) (offset int) {
 	offset += fastpb.WriteListPacked(buf[offset:], 1, len(x.GetIds()),
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
-			offset += fastpb.WriteInt64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
+			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -857,7 +857,7 @@ func (x *ReleaseSkuStockLockData) fastWriteField1(buf []byte) (offset int) {
 	if x.ProductSkuId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductSkuId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductSkuId())
 	return offset
 }
 
@@ -916,7 +916,7 @@ func (x *LockSkuStockLockData) fastWriteField1(buf []byte) (offset int) {
 	if x.ProductSkuId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductSkuId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductSkuId())
 	return offset
 }
 
@@ -956,7 +956,7 @@ func (x *QuerySkuStockByProductSkuIdReq) fastWriteField1(buf []byte) (offset int
 	if x.ProductSkuId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductSkuId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductSkuId())
 	return offset
 }
 
@@ -982,7 +982,7 @@ func (x *BaseSkuStock) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -990,7 +990,7 @@ func (x *BaseSkuStock) sizeField2() (n int) {
 	if x.ProductId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(2, x.GetProductId())
+	n += fastpb.SizeUint64(2, x.GetProductId())
 	return n
 }
 
@@ -1110,7 +1110,7 @@ func (x *SkuStockListReq) sizeField1() (n int) {
 	if x.ProductId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductId())
+	n += fastpb.SizeUint64(1, x.GetProductId())
 	return n
 }
 
@@ -1188,7 +1188,7 @@ func (x *SkuStockDeleteReq) sizeField1() (n int) {
 	n += fastpb.SizeListPacked(1, len(x.GetIds()),
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
-			n += fastpb.SizeInt64(numTagOrKey, x.GetIds()[numIdxOrVal])
+			n += fastpb.SizeUint64(numTagOrKey, x.GetIds()[numIdxOrVal])
 			return n
 		})
 	return n
@@ -1241,7 +1241,7 @@ func (x *ReleaseSkuStockLockData) sizeField1() (n int) {
 	if x.ProductSkuId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductSkuId())
+	n += fastpb.SizeUint64(1, x.GetProductSkuId())
 	return n
 }
 
@@ -1300,7 +1300,7 @@ func (x *LockSkuStockLockData) sizeField1() (n int) {
 	if x.ProductSkuId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductSkuId())
+	n += fastpb.SizeUint64(1, x.GetProductSkuId())
 	return n
 }
 
@@ -1340,7 +1340,7 @@ func (x *QuerySkuStockByProductSkuIdReq) sizeField1() (n int) {
 	if x.ProductSkuId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductSkuId())
+	n += fastpb.SizeUint64(1, x.GetProductSkuId())
 	return n
 }
 

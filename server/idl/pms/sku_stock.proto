@@ -8,8 +8,8 @@ option go_package = "pms/sku_stock";
 
 
 message BaseSkuStock{
-  int64    Id = 1;
-  int64    ProductId = 2;
+  uint64    Id = 1;
+  uint64    ProductId = 2;
   string    SkuCode = 3; // sku编码
   float  Price = 4;
   int64    Stock = 5; // 库存
@@ -31,7 +31,7 @@ message SkuStockAddResp {
 }
 
 message SkuStockListReq {
-  int64    ProductId = 1;
+  uint64    ProductId = 1;
 }
 
 message SkuStockListResp {
@@ -48,7 +48,7 @@ message SkuStockUpdateResp {
 }
 
 message SkuStockDeleteReq {
-  repeated int64 ids = 1;
+  repeated uint64 ids = 1;
 }
 
 message SkuStockDeleteResp {
@@ -60,7 +60,7 @@ message ReleaseSkuStockLockReq {
 }
 
 message ReleaseSkuStockLockData {
-  int64    ProductSkuId = 1;
+  uint64    ProductSkuId = 1;
   int64    ProductQuantity = 2;
 }
 
@@ -73,7 +73,7 @@ message LockSkuStockLockReq {
 }
 
 message LockSkuStockLockData {
-  int64    ProductSkuId = 1;
+  uint64    ProductSkuId = 1;
   int64    ProductQuantity = 2;
 }
 
@@ -82,7 +82,7 @@ message LockSkuStockLockResp {
 }
 
 message QuerySkuStockByProductSkuIdReq {
-  int64    ProductSkuId = 1;
+  uint64    ProductSkuId = 1;
 }
 
 

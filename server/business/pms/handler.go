@@ -2,50 +2,22 @@ package main
 
 import (
 	"context"
-	album "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/album"
-	sku_stock "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/sku_stock"
-	product_verify_record "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_verify_record"
-	product "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product"
-	product_ladder "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_ladder"
-	product_full_reduction "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_full_reduction"
-	product_category_attribute_relation "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_category_attribute_relation"
-	product_category "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_category"
-	product_attribute_value "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute_value"
-	product_attribute_category "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute_category"
-	product_attribute "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute"
-	member_price "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/member_price"
-	comment_reply "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/comment_reply"
-	comment "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/comment"
-	brand "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/brand"
 	album_pic "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/album_pic"
+	brand "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/brand"
+	comment "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/comment"
+	comment_reply "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/comment_reply"
+	member_price "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/member_price"
+	product "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product"
+	product_attribute "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute"
+	product_attribute_category "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute_category"
+	product_attribute_value "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_attribute_value"
+	product_category "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_category"
+	product_category_attribute_relation "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_category_attribute_relation"
+	product_full_reduction "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_full_reduction"
+	product_ladder "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_ladder"
+	product_verify_record "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/product_verify_record"
+	sku_stock "github.com/yuanyp8/wxcommerce/shared/kitex_gen/pms/sku_stock"
 )
-
-// AlbumServiceImpl implements the last service interface defined in the IDL.
-type AlbumServiceImpl struct{}
-
-// AlbumAdd implements the AlbumServiceImpl interface.
-func (s *AlbumServiceImpl) AlbumAdd(ctx context.Context, req *album.AlbumAddReq) (resp *album.AlbumAddResp, err error) {
-	// TODO: Your code here...
-	return
-}
-
-// AlbumList implements the AlbumServiceImpl interface.
-func (s *AlbumServiceImpl) AlbumList(ctx context.Context, req *album.AlbumListReq) (resp *album.AlbumListResp, err error) {
-	// TODO: Your code here...
-	return
-}
-
-// AlbumUpdate implements the AlbumServiceImpl interface.
-func (s *AlbumServiceImpl) AlbumUpdate(ctx context.Context, req *album.AlbumUpdateReq) (resp *album.AlbumUpdateResp, err error) {
-	// TODO: Your code here...
-	return
-}
-
-// AlbumDelete implements the AlbumServiceImpl interface.
-func (s *AlbumServiceImpl) AlbumDelete(ctx context.Context, req *album.AlbumDeleteReq) (resp *album.AlbumDeleteResp, err error) {
-	// TODO: Your code here...
-	return
-}
 
 // AlbumPicAdd implements the AlbumPicServiceImpl interface.
 func (s *AlbumPicServiceImpl) AlbumPicAdd(ctx context.Context, req *album_pic.AlbumPicAddReq) (resp *album_pic.AlbumPicAddResp, err error) {

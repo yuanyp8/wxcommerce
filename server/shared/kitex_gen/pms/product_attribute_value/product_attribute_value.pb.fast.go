@@ -48,7 +48,7 @@ ReadFieldError:
 }
 
 func (x *BaseProductAttributeValue) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -143,7 +143,7 @@ ReadFieldError:
 }
 
 func (x *ProductAttributeValueListReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.ProductId, offset, err = fastpb.ReadInt64(buf, _type)
+	x.ProductId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -263,7 +263,7 @@ ReadFieldError:
 }
 
 func (x *ProductAttributeValueDeleteReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadInt64(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
@@ -307,7 +307,7 @@ func (x *BaseProductAttributeValue) fastWriteField1(buf []byte) (offset int) {
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -379,7 +379,7 @@ func (x *ProductAttributeValueListReq) fastWriteField1(buf []byte) (offset int) 
 	if x.ProductId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetProductId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetProductId())
 	return offset
 }
 
@@ -454,7 +454,7 @@ func (x *ProductAttributeValueDeleteReq) fastWriteField1(buf []byte) (offset int
 	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt64(buf[offset:], 1, x.GetId())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
@@ -489,7 +489,7 @@ func (x *BaseProductAttributeValue) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
@@ -561,7 +561,7 @@ func (x *ProductAttributeValueListReq) sizeField1() (n int) {
 	if x.ProductId == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetProductId())
+	n += fastpb.SizeUint64(1, x.GetProductId())
 	return n
 }
 
@@ -636,7 +636,7 @@ func (x *ProductAttributeValueDeleteReq) sizeField1() (n int) {
 	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeInt64(1, x.GetId())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 

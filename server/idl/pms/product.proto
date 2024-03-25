@@ -19,7 +19,7 @@ import "member_price.proto";
 
 message BaseProduct {
   // 商品ID
-  int64       Id = 1;
+  uint64       Id = 1;
 
   // 商品基础信息
   string      Name = 2; // 商品名称
@@ -131,7 +131,7 @@ message ProductAddReq {
 }
 
 message ProductAddResp {
-  int32 productId = 1;
+  uint64 ProductId = 1;
 }
 
 /*
@@ -150,7 +150,7 @@ message ProductListReq {
 }
 
 message ProductByIdsReq {
-  repeated int64  Ids = 1;
+  repeated uint64  Ids = 1;
 }
 
 
@@ -195,7 +195,7 @@ message ProductDeleteResp {
 */
 
 message ProductDetailByIdReq {
-  int64 id = 1; // 产品id
+  uint64 Id = 1; // 产品id
 }
 
 

@@ -17,7 +17,7 @@ var (
 )
 
 var RootCmd = &cobra.Command{
-	Use:   "pms",
+	Use:   "pmsmodel",
 	Short: "商品管理组件",
 	Long:  "WXCommerce 平台商品管理微服务",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,5 +41,5 @@ func initial() {
 }
 
 func init() {
-	RootCmd.PersistentFlags().StringVarP(&configPath, "config-file", "f", "etc/config.yaml", "the pms server config from file")
+	RootCmd.PersistentFlags().StringVarP(&configPath, "config-file", "f", "etc/config.yaml", "the pmsmodel server config from file")
 }
